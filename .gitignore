@@ -1,0 +1,7 @@
+__pycache__/*
+venv/*
+.idea/*
+Channels/__pycache__/*
+Individual/__pycache__/*
+Smo/__pycache__/*
+Statistic/__pycache__/*
