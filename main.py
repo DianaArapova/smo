@@ -78,6 +78,7 @@ def main():
     plot_drawer = PlotsDrawer(min_quality_parameters, avg_quality_parameters, wight_quality_parameters, statistic)
     plot_drawer.draw_plot_for_each_people()
     plot_drawer.draw_plot_for_each_route_average_min()
+    plot_drawer.draw_plot_for_each_route_count_of_people()
 
     for s in data_for_statistic:
         print(s.people_id, s.trip_info)
@@ -85,10 +86,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-

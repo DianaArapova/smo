@@ -87,6 +87,33 @@ class PlotsDrawer:
 
         plt.show()
 
+    def draw_plot_for_each_route_count_of_people(self):
+        route_and_min_quality = self.__get_min_quality_group_by_route__()
+
+        routes = list()
+        people_count = list()
+        for route in route_and_min_quality:
+            people_count.append(len(route_and_min_quality[route]))
+            str_route = [str(r) for r in route]
+            routes.append("-".join(str_route))
+
+        x = np.array(routes)
+        y = np.array(people_count)
+
+        # Способ 1 с помощью label
+        plt.plot(x, y, label=u'people per a route', color='b')
+
+        plt.grid(True)
+        plt.xlabel(u'Routes')
+        plt.ylabel(u'Quality')
+        plt.title(u'People count per route')
+
+        plt.legend()  # легенда для всего рисунка fig
+
+        save('group_by_route_count_of_people_1_1', fmt='png')
+
+        plt.show()
+
     def __get_min_quality_group_by_route__(self):
         route_and_min_quality = dict()
         for s in self.statistic:
