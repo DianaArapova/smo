@@ -105,7 +105,7 @@ class PlotsDrawer:
 
         plt.grid(True)
         plt.xlabel(u'Routes')
-        plt.ylabel(u'Quality')
+        plt.ylabel(u'Count of people')
         plt.title(u'People count per route')
 
         plt.legend()  # легенда для всего рисунка fig
