@@ -20,12 +20,13 @@ rcParams['font.fantasy'] = 'Arial'
 
 
 class PlotsDrawer:
-    def __init__(self, min_param, avg_param, weight_param):
+    def __init__(self, min_param, avg_param, weight_param, statistic):
+        self.statistic = statistic
         self.weight_param = weight_param
         self.avg_param = avg_param
         self.min_param = min_param
 
-    def draw_plot(self):
+    def draw_plot_for_each_people(self):
         ids = []
         weight_param = []
         for s in self.weight_param:
@@ -58,3 +59,43 @@ class PlotsDrawer:
         save('pic_12_1_4', fmt='png')
 
         plt.show()
+
+    def draw_plot_for_each_route_average_min(self):
+        route_and_min_quality = self.__get_min_quality_group_by_route__()
+
+        routes = list()
+        avg_min_quality = list()
+        for route in route_and_min_quality:
+            avg_min_quality.append(np.average(route_and_min_quality[route]))
+            str_route = [str(r) for r in route]
+            routes.append("-".join(str_route))
+
+        x = np.array(routes)
+        y = np.array(avg_min_quality)
+
+        # Способ 1 с помощью label
+        plt.plot(x, y, label=u'average of minimum qualities', color='r')
+
+        plt.grid(True)
+        plt.xlabel(u'Routes')
+        plt.ylabel(u'Quality')
+        plt.title(u'Qualities group by route')
+
+        plt.legend()  # легенда для всего рисунка fig
+
+        save('group_by_rote_min_1_1', fmt='png')
+
+        plt.show()
+
+    def __get_min_quality_group_by_route__(self):
+        route_and_min_quality = dict()
+        for s in self.statistic:
+            if tuple(s.total_route) not in route_and_min_quality:
+                route_and_min_quality[tuple(s.total_route)] = [s.min_quality]
+            else:
+                route_and_min_quality[tuple(s.total_route)].append(s.min_quality)
+
+        for route in route_and_min_quality:
+            route_and_min_quality[route] = np.array(route_and_min_quality[route])
+
+        return route_and_min_quality

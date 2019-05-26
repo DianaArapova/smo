@@ -66,16 +66,18 @@ def main():
     data_for_statistic = sorted(data_for_statistic, key=lambda s: s.people_id)
 
     statistic_provider = StatisticProvider(data_for_statistic)
+    statistic = statistic_provider.provide_statistics_by_all_people()
 
-    for s in statistic_provider.provide_statistics_by_all_people():
+    for s in statistic:
         print(s)
 
     min_quality_parameters = statistic_provider.get_for_all_people_min_quality()
     avg_quality_parameters = statistic_provider.get_for_all_people_avg_quality()
     wight_quality_parameters = statistic_provider.get_for_all_people_weighted_avg_with_min_quality()
 
-    plot_drawer = PlotsDrawer(min_quality_parameters, avg_quality_parameters, wight_quality_parameters)
-    plot_drawer.draw_plot()
+    plot_drawer = PlotsDrawer(min_quality_parameters, avg_quality_parameters, wight_quality_parameters, statistic)
+    plot_drawer.draw_plot_for_each_people()
+    plot_drawer.draw_plot_for_each_route_average_min()
 
     for s in data_for_statistic:
         print(s.people_id, s.trip_info)
