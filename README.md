@@ -7,7 +7,7 @@
 
 ![Image alt](https://github.com/DianaArapova/smo/blob/master/png/group_by_rote_min_1_1.png)
 
-**People by route**
+**People per route**
 
 ![Image alt](https://github.com/DianaArapova/smo/blob/master/png/group_by_route_count_of_people_1_1.png)
 
